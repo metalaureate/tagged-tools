@@ -60,18 +60,23 @@ app.get('/api/v1/search/', function (req, res) {
             places = body.features;
             // places= _.filter(places, function (p) { return p.properties.osm_key=='place'});
             places = _.filter(places, function (p) {
-                return p.properties.osm_value == 'city' || p.properties.osm_value == 'administrative' || p.properties.osm_value == 'town'
+                return p.properties.osm_value == 'city' || p.properties.osm_value == 'administrative' || p.properties.osm_value == 'town' || p.properties.osm_value == 'suburb' || p.properties.osm_value == 'village'
             });
             // dedupe places within 4 miles of each other (this knocks out administrative levels with same centroid as city)
             for (var x = 0; x < places.length; x++) {
                 for (var y = 0; y < places.length; y++) {
-                    if (x != y &&  places[x] && places[y]) {
+                    if (x != y && places[x] && places[y]) {
                         var distance = geolib.getDistance(
                             {latitude: places[x].geometry.coordinates[1], longitude: places[x].geometry.coordinates[0]},
-                            {latitude: places[y].geometry.coordinates[1], longitude: places[y].geometry.coordinates[0]});
-                        if (distance < 1609*4) { // ignore anything within 4 miles
-                            console.log('deduping', places[y],distance);
-                           if (places[x].properties.osm_value!='town' || places[x].properties.osm_value!='city') {places[y] = null;}
+                            {
+                                latitude: places[y].geometry.coordinates[1],
+                                longitude: places[y].geometry.coordinates[0]
+                            });
+                        if (distance < 1609 * 4) { // ignore anything within 4 miles
+                            console.log('deduping', places[y], distance);
+                            if (places[x].properties.osm_value != 'town' || places[x].properties.osm_value != 'city') {
+                                places[y] = null;
+                            }
                         }
                     }
 
@@ -86,14 +91,16 @@ app.get('/api/v1/search/', function (req, res) {
                 p.distance = geolib.getDistance(
                     {latitude: p.geometry.coordinates[1], longitude: p.geometry.coordinates[0]},
                     {latitude: lat, longitude: long});
-                p.distance=(p.distance/1609).toFixed(2);
+                p.distance = (p.distance / 1609).toFixed(2);
 
             });
-            places= _.sortBy(places, function (p) { return parseInt(p.distance) });
+            places = _.sortBy(places, function (p) {
+                return parseInt(p.distance)
+            });
 
 
         }
-console.log(places);
+        console.log(places);
         res.send({places: places, data: body});
 
     })

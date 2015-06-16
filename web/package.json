@@ -21,7 +21,8 @@
     "any-db-postgres": "latest",
     "kue": "latest",
     "request": "latest",
-    "geolib": "latest"
+    "geolib": "latest",
+    "node-uuid": "latest"
 
   }
 }

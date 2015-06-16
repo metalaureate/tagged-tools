@@ -60,7 +60,7 @@ app.get('/api/v1/search/', function (req, res) {
             places = body.features;
             // places= _.filter(places, function (p) { return p.properties.osm_key=='place'});
             places = _.filter(places, function (p) {
-                return p.properties.osm_value == 'city' || p.properties.osm_value == 'administrative'
+                return p.properties.osm_value == 'city' || p.properties.osm_value == 'administrative' || p.properties.osm_value == 'town'
             });
             // dedupe places within 4 miles of each other (this knocks out administrative levels with same centroid as city)
             for (var x = 0; x < places.length; x++) {
@@ -71,7 +71,7 @@ app.get('/api/v1/search/', function (req, res) {
                             {latitude: places[y].geometry.coordinates[1], longitude: places[y].geometry.coordinates[0]});
                         if (distance < 1609*4) { // ignore anything within 4 miles
                             console.log('deduping', places[y],distance);
-                            places[y] = null;
+                           if (places[x].properties.osm_value!='town' || places[x].properties.osm_value!='city') {places[y] = null;}
                         }
                     }
 
@@ -81,8 +81,19 @@ app.get('/api/v1/search/', function (req, res) {
             places = _.filter(places, function (p) {
                 return p != null
             });
-        }
 
+            places.forEach(function (p) {
+                p.distance = geolib.getDistance(
+                    {latitude: p.geometry.coordinates[1], longitude: p.geometry.coordinates[0]},
+                    {latitude: lat, longitude: long});
+                p.distance=(p.distance/1609).toFixed(2);
+
+            });
+            places= _.sortBy(places, function (p) { return parseInt(p.distance) });
+
+
+        }
+console.log(places);
         res.send({places: places, data: body});
 
     })

@@ -1,13 +1,7 @@
-postgis:
-    build: ./postgis/
-redis:
-    image: redis
 web:
     build: ./web/
     command: npm start
-    links:
-        - postgis
     ports:
-        - "8088:80"
+        - "80:8088"
 
 

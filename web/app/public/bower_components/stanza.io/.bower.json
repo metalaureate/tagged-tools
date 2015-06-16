@@ -1,0 +1,14 @@
+{
+  "name": "stanza.io",
+  "homepage": "https://github.com/otalk/stanza.io",
+  "version": "7.1.1",
+  "_release": "7.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v7.1.1",
+    "commit": "570a4b5d48c090e9fc842844bcbd3cb50659bc2d"
+  },
+  "_source": "git://github.com/otalk/stanza.io.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/otalk/stanza.io.git"
+}

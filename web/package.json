@@ -1,0 +1,27 @@
+{
+  "name": "geosearch",
+  "version": "0.0.1",
+  "description": "Geosearch Protoype",
+  "scripts": {
+    "start": "node ./app/server.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "method-override": "latest",
+    "errorhandler": "latest",
+    "express-session": "latest",
+    "connect-redis": "latest",
+    "ejs": "~0.8.5",
+    "config": "latest",
+    "async": "latest",
+    "underscore": "latest",
+    "pg": "latest",
+    "any-db-postgres": "latest",
+    "kue": "latest",
+    "request": "latest",
+    "geolib": "latest"
+
+  }
+}

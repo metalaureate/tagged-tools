@@ -1,0 +1,92 @@
+{
+  "name": "stanza.io",
+  "description": "Modern XMPP in the browser, with a JSON API",
+  "version": "7.1.1",
+  "author": "Lance Stout <lance@andyet.net>",
+  "browser": {
+    "request": "browser-request",
+    "faye-websocket": false,
+    "./lib/plugins/index.js": "./lib/plugins/index-browser.js"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "browserify-versionify",
+        {
+          "placeholder": "__STANZAIO_VERSION__"
+        }
+      ]
+    ]
+  },
+  "bugs": "https://github.com/otalk/stanza.io/issues",
+  "contributors": [
+    "Philipp Hancke <fippo@andyet.net>",
+    "Steven Lloyd Watkin <lloyd@evilprofessor.co.uk>"
+  ],
+  "dependencies": {
+    "alt-sasl-digest-md5": "^1.0.0",
+    "async": "^0.9.0",
+    "bluebird": "^2.3.2",
+    "brfs": "^1.1.1",
+    "browser-request": "^0.3.1",
+    "faye-websocket": "^0.9.0",
+    "hostmeta": "^1.0.1",
+    "iana-hashes": "^1.0.0",
+    "jingle": "^1.5.1",
+    "jxt": "^2.7.0",
+    "jxt-xmpp-types": "^2.1.0",
+    "node-uuid": "^1.4.1",
+    "request": "^2.36",
+    "sasl-anonymous": "^0.1.0",
+    "sasl-external": "^0.1.0",
+    "sasl-plain": "^0.1.0",
+    "sasl-scram-sha-1": "^1.1.0",
+    "saslmechanisms": "^0.1.1",
+    "underscore": "1.6.0",
+    "wildemitter": "^1.0.1",
+    "xmpp-jid": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.0",
+    "browserify-versionify": "^1.0.4",
+    "nsp": "^1.0.0",
+    "precommit-hook": "^2.0.0",
+    "tap-spec": "^2.0.0",
+    "tape": "^3.0.3",
+    "uglify-js": "^2.4.15"
+  },
+  "homepage": "http://stanza.io",
+  "keywords": [
+    "xmpp",
+    "websocket",
+    "stanza.io"
+  ],
+  "license": "MIT",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otalk/stanza.io.git"
+  },
+  "scripts": {
+    "audit": "make audit",
+    "build": "make build",
+    "test": "make test"
+  },
+  "testling": {
+    "files": [
+      "test/connection.js"
+    ],
+    "browsers": [
+      "ie/10..latest",
+      "chrome/20..latest",
+      "chrome/canary",
+      "firefox/10..latest",
+      "firefox/nightly",
+      "opera/next",
+      "safari/6..latest",
+      "iphone/6..latest",
+      "ipad/6..latest",
+      "android-browser/4.2..latest"
+    ]
+  }
+}

@@ -1,1 +1,1 @@
-# web automation for product QA monitoring
+# POC of the Photon

@@ -36,7 +36,7 @@
 </script>
     <nav class="navbar " role="navigation">
         <div class="navbar-header navbar-brand page-scroll">
-            <div class="container">Geosearch Prototype</div>
+            <div class="container">Geosearch Autocomplete Prototype</div>
         </div>
     </nav>
 
@@ -87,10 +87,10 @@
     <div class="row" style="margin-top:48px">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-
+{{map.center.latitude.toFixed(6)}}, {{map.center.longitude.toFixed(6)}}
         <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
             <div><h4>How does this work?</h4>
-                <a href="http://genvega.com/2014/09/22/autocomplete-the-whole-world-with-photon/">http://genvega.com/2014/09/22/autocomplete-the-whole-world-with-photon/</a>
+                <a href="http://genvega.com/2014/09/22/autocomplete-the-whole-world-with-photon/">http://genvega.com/2014/09/22/autocomplete-the-whole-world-with-photon/</a><br>
                 Data source: Open Street Map<br>Indexing: Nominatim<br>Search: ElasticSearch
         </div>
         <div class="col-md-2"></div>

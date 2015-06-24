@@ -60,7 +60,7 @@ app.get('/api/v1/search/', function (req, res) {
             places = body.features;
             // places= _.filter(places, function (p) { return p.properties.osm_key=='place'});
             places = _.filter(places, function (p) {
-                return p.properties.osm_value == 'city' || p.properties.osm_value == 'administrative' || p.properties.osm_value == 'town' || p.properties.osm_value == 'suburb' || p.properties.osm_value == 'village'
+                return p.properties.state && (p.properties.osm_value == 'city' || p.properties.osm_value == 'administrative' || p.properties.osm_value == 'town' || p.properties.osm_value == 'suburb' || p.properties.osm_value == 'village')
             });
             // dedupe places within 4 miles of each other (this knocks out administrative levels with same centroid as city)
             for (var x = 0; x < places.length; x++) {

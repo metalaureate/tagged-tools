@@ -1,7 +1,7 @@
 {
-  "name": "geosearch",
+  "name": "results-stream-tools",
   "version": "0.0.1",
-  "description": "Geosearch Protoype",
+  "description": "Results Stream Tools",
   "scripts": {
     "start": "node ./app/server.js"
   },
@@ -22,7 +22,9 @@
     "kue": "latest",
     "request": "latest",
     "geolib": "latest",
-    "node-uuid": "latest"
+    "node-uuid": "latest",
+    "phash-image": "latest",
+    "hamming-distance": "latest"
 
   }
 }

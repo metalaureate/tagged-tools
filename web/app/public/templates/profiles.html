@@ -1,0 +1,9 @@
+<p>Enter line-delimited or comma-delimited UIDs</p>
+
+<textarea ng-model="uids" rows="5"></textarea>
+
+<p>
+    <button class="btn btn-primary" ng-click="visualize()">View Profile Photos</button>
+</p>
+<a href="http://{{host}}/{{shortlink}}">/{{shortlink}}</a>
+<div deckgrid source="users" cardTemplate="/templates/deckgrid-card.html" class="deckgrid"></div>

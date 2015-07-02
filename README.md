@@ -1,1 +1,1 @@
-# POC of the Photon
+# Tools to help visualize the results stream

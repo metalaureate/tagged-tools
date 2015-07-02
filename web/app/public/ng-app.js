@@ -1,46 +1,78 @@
 var app;
-app = angular.module('app',
-    ['ui.bootstrap', 'geolocation','uiGmapgoogle-maps']);
-app.config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        //    key: 'your api key',
-        v: '3.17',
-        libraries: 'weather,geometry,visualization'
-    });
-})
-app.controller('SearchCtrl', function (geolocation,$scope,$http,$log) {
-    $scope.geoloading=true;
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-    $scope.lang="en";
-    geolocation.getLocation().then(function (data) {
-        $scope.geoloading=false;
-        $scope.lat=data.coords.latitude;
-        $scope.long=data.coords.longitude;
-        $scope.map = { center: { latitude: $scope.lat, longitude: $scope.long }, zoom: 8 };
+app = angular.module('app', ['ui.router','ui.bootstrap', 'akoenig.deckgrid']);
 
-    })
-    $scope.getPlaces = function (val) {
-
-        return $http.get('/api/v1/search/', {
-            params: {
-                search: val,
-                lat: $scope.lat,
-                long: $scope.long,
-                lang: $scope.lang
-            }
-        }).then(function (res) {
-            var places= _.map(res.data.places, function (p) { return {city: p.properties.city || p.properties.name,
-                state: p.properties.state,
-                country: p.properties.country,
-                lat: p.geometry.coordinates[1], long:p.geometry.coordinates[0] }})
-            $log.info(res.data.data);
-            return places;
+app.config(function ($stateProvider, $locationProvider) {
+    $locationProvider.html5Mode({enabled: true, requireBase: false});
+    $stateProvider
+        .state('profiles', {
+            resolve: {},
+            url: '/:shortlink',
+            templateUrl: '/templates/profiles.html',
+            controller: 'ProfilesCtrl'
         });
-    };
-    $scope.mapPlace = function (item, model, label) {
-        console.log(item);
-        $scope.map = { center: { latitude: item.lat, longitude: item.long }, zoom: 8 };
-        $scope.place=item.city +", "+item.state;
+});
+
+
+app.controller('ProfilesCtrl', function ($scope, $http, $log,$state,$stateParams,$window) {
+    $scope.uids='';
+    $scope.users=[];
+    $scope.host=$window.location.host;
+
+    var shortlink=$stateParams.shortlink;
+
+    if (shortlink>'') {
+        $scope.shortlink=shortlink;
+
+        $log.info(shortlink);
+        $http.get('/api/v1/read/', {json: true, params: {shortlink: shortlink}}
+        ).success(function (data) {
+                $scope.uids=data.data;
+
+            }).error(function () {
+
+                $log.error("Error getting saved query.");
+            });
 
     }
+
+    $scope.visualize=function() {
+        var uids=$scope.uids.split('\n');
+        if ($scope.uids.match(/\,/ig)) {
+           uids= $scope.uids.split(',');
+           uids= _.map(uids, function (m) { return m.replace(/\,/ig,'')});
+        }
+        $scope.users= _.map(uids, function (m) { return {title: m, src: "http://www.tagged.com/imgsrv.php?sz=p&uid="+m}});
+        $log.info($scope.users);
+        $http.post('/api/v1/save/', {data: $scope.uids}, {json: true}
+        ).success(function (data) {
+                $log.debug(data);
+                $scope.shortlink=data.shortlink;
+            }).error(function () {
+                $log.error("Error saving.");
+            });
+    }
+
 });
+
+
+
+
+app.directive('imageloaded', [
+
+    function () {
+
+        'use strict';
+
+        return {
+            restrict: 'A',
+
+            link: function (scope, element, attrs) {
+                var cssClass = attrs.loadedclass;
+
+                element.bind('load', function (e) {
+                    angular.element(element).addClass(cssClass);
+                });
+            }
+        }
+    }
+]);

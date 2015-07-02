@@ -9,96 +9,41 @@
     <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
 
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript"
-            src="bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
-    <script type="text/javascript"
-            src="bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <script type="text/javascript" src="bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+
     <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="bower_components/angular-deckgrid/angular-deckgrid.js"></script>
 
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" type="text/css"/>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
     <link href="common.css" rel="stylesheet" type="text/css"/>
-
-    <script src='bower_components/lodash/lodash.min.js'></script>
-    <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript" src="ng-app.js"></script>
 
 </head>
 <body ng-app="app">
-<script type="text/ng-template" id="geosearch.html">
-    <a style="cursor:pointer;">
-        <span bind-html-unsafe="match.label.city+', '+match.label.state | typeaheadHighlight:query"></span>
-    </a>
-</script>
-    <nav class="navbar " role="navigation">
-        <div class="navbar-header navbar-brand page-scroll">
-            <div class="container">Geosearch Autocomplete Prototype</div>
-        </div>
-    </nav>
 
-<div class="container" ng-controller="SearchCtrl">
-    <div class="row">
-        <div class="col-md-3">
+<nav class="navbar " role="navigation">
+    <div class="navbar-header navbar-brand page-scroll">
+        <div class="container">Bulk Tagged Profile Photo Viewer</div>
 
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-               <label>System Language Hint </label><br/>
-                <select ng-model="lang" >
-                    <option value="en">English</option>
-                    <option value="it">Italian</option>
-                    <option value="fr">French</option>
-                    <option value="de">German</option>
+    </div>
+</nav>
 
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Client Geolocation Hint </label><br/><input type="text" ng-model="lat" name="lat" ><input type="text" ng-model="long" name="long"> <i ng-show="geoloading" class="fa fa-spinner fa-spin"></i>
+<div class="container">
+    <div ui-view class="no-animate" ng-cloak autoscroll="true">
 
-            </div>
-                <div class="group-input clearfix">
-
-                <input type="text" ng-model="place" name="placeID"
-                       placeholder="Where do you want to search today?"
-                       typeahead="place as place for place in getPlaces($viewValue)"
-                       typeahead-template-url="geosearch.html"
-                       typeahead-loading="loadingPlaces"
-                       typeahead-editable="false"
-                       typeahead-wait-ms="500"
-                       typeahead-on-select="mapPlace($item, $model, $label)"
-
-                       class="form-control" style="color:#219ab3 !important;"
-                        />
-
-                <i ng-show="loadingPlaces" class="fa fa-spinner fa-spin"></i>
-
-            </div>
-
-        </div>
-        <div class="col-md-3">
-
-        </div>
     </div>
 
-    <div class="row" style="margin-top:48px">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-{{map.center.latitude.toFixed(6)}}, {{map.center.longitude.toFixed(6)}}
-        <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-            <div><h4>How does this work?</h4>
-                <p>
-                <a href="http://genvega.com/2014/09/22/autocomplete-the-whole-world-with-photon/">http://genvega.com/2014/09/22/autocomplete-the-whole-world-with-photon/</a><br>
-                Data source: Open Street Map<br>Indexing: Nominatim<br>Search: ElasticSearch
-                </p>
-                <p>View browser console for raw response.</p>
-        </div>
-        <div class="col-md-2"></div>
-        </div>
-    </div>
+
+</div>
 
 </div>
 </body>

@@ -3,6 +3,8 @@ var config = require('config');
 console.log('Web service initializing');
 // Module dependencies.
 var _ = require('underscore');
+var uuid=require('node-uuid');
+
 var application_root = __dirname,
     express = require('express'),
     path = require('path'); //Utilities for dealing with file paths
@@ -43,68 +45,23 @@ server.listen(process.env.PORT || port, function () {
     console.log('Express server listening on port %d in %s mode', process.env.PORT || port, app.settings.env);
 });
 
+app.post('/api/v1/save/', function (req, res) {
+    var shortlink= uuid.v1();
+    var fs=require('fs');
+    fs.writeFileSync(__dirname+'/tmp/save-'+shortlink,req.body.data);
+    res.send({shortlink: shortlink});
 
-app.get('/api/v1/search/', function (req, res) {
-    var request = require('request');
-    var geolib = require('geolib');
+});
+app.get('/api/v1/read/', function (req,res) {
+    var shortlink=req.query['shortlink'];
+    var fs=require('fs');
+    var data=fs.readFileSync(__dirname+'/tmp/save-'+shortlink).toString();
+    res.send({data: data});
 
-    var search = req.query['search'];
-    var lat = req.query['lat'];
-    var long = req.query['long'];
-    var lang = req.query['lang'];
-    var api = "http://photon.komoot.de/api/?q=" + search + "&lat=" + lat + "&lon=" + long + "&lang=" + lang;
-    console.log(api);
-    request.get(api, {json: true}, function (error, result, body) {
-        var places = [];
-        if (body.features) {
-            places = body.features;
-            // places= _.filter(places, function (p) { return p.properties.osm_key=='place'});
-            places = _.filter(places, function (p) {
-                return p.properties.state && (p.properties.osm_value == 'city' || p.properties.osm_value == 'administrative' || p.properties.osm_value == 'town' || p.properties.osm_value == 'suburb' || p.properties.osm_value == 'village')
-            });
-            // dedupe places within 4 miles of each other (this knocks out administrative levels with same centroid as city)
-            for (var x = 0; x < places.length; x++) {
-                for (var y = 0; y < places.length; y++) {
-                    if (x != y && places[x] && places[y]) {
-                        var distance = geolib.getDistance(
-                            {latitude: places[x].geometry.coordinates[1], longitude: places[x].geometry.coordinates[0]},
-                            {
-                                latitude: places[y].geometry.coordinates[1],
-                                longitude: places[y].geometry.coordinates[0]
-                            });
-                        if (distance < 1609 * 4) { // ignore anything within 4 miles
-                            console.log('deduping', places[y], distance);
-                            if (places[x].properties.osm_value != 'town' || places[x].properties.osm_value != 'city') {
-                                places[y] = null;
-                            }
-                        }
-                    }
+});
 
-                }
-
-            }
-            places = _.filter(places, function (p) {
-                return p != null
-            });
-
-            places.forEach(function (p) {
-                p.distance = geolib.getDistance(
-                    {latitude: p.geometry.coordinates[1], longitude: p.geometry.coordinates[0]},
-                    {latitude: lat, longitude: long});
-                p.distance = (p.distance / 1609).toFixed(2);
-
-            });
-            places = _.sortBy(places, function (p) {
-                return parseInt(p.distance)
-            });
-
-
-        }
-        console.log(places);
-        res.send({places: places, data: body});
-
-    })
-    // http://photon.komoot.de/api/?q=berlin&lat=52.3879&lon=13.0582&lang=en
-
-
-})
+app.get('*', function (req, res) {
+    //
+    var url_path = req.path ;
+    res.redirect('/#' + url_path);
+});

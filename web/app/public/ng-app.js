@@ -76,3 +76,49 @@ app.directive('imageloaded', [
         }
     }
 ]);
+
+app.directive('taggedSquarify', function() {
+    return {
+        scope: {
+            imageUrl: '@taggedSquarify',
+            size: '='
+        },
+        template: "<div style='overflow: hidden;' ng-style='{width: size, height: size}'><img ng-src='{{ imageUrl }}' />{{size}},{{size}}</div>",
+        transclude: true,
+        replace: true,
+        link: function(scope, element, attrs) {
+            var img = element.find('img');
+            var width, height, ratio;
+
+            var scaleImage = function() {
+                scope.imageCss = {
+                    width: (ratio <= 1) ? scope.size : 'auto',
+                    height: (ratio > 1) ? scope.size : 'auto',
+                    marginLeft: (ratio > 1) ? calcMarginLeft() : 0,
+                    marginTop: (ratio < 1) ? calcMarginTop() : 0
+                };
+            };
+
+            var calcMarginLeft = function() {
+                return (height - width) / 2 * (scope.size / height);
+            };
+
+            var calcMarginTop = function() {
+                if (ratio >= 0.8) {
+                    return (width - height) / 2 * (scope.size / width);
+                } else {
+                    return (width - height) / 3 * (scope.size / width);
+                }
+            };
+
+            img.bind('load', function() {
+                width = img[0].width;
+                height = img[0].height;
+                ratio = width / height;
+                scope.$apply(scaleImage);
+            });
+
+            scope.$watch('size', scaleImage);
+        }
+    };
+});

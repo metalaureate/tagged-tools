@@ -77,6 +77,7 @@ app.directive('imageloaded', [
     }
 ]);
 
+
 app.directive('taggedSquarify', function() {
     return {
         scope: {

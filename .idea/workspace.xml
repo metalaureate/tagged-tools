@@ -64,14 +64,14 @@
       <file leaf-file-name="ng-app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/app/public/ng-app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23913044">
-              <caret line="86" column="176" selection-start-line="86" selection-start-column="176" selection-end-line="86" selection-end-column="176" />
+            <state vertical-scroll-proportion="0.51086956">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
-                <marker date="1437610579000" expanded="true" signature="2288:2305" placeholder="..." />
-                <marker date="1437610579000" expanded="true" signature="2288:2323" placeholder="..." />
-                <marker date="1437610579000" expanded="true" signature="2325:2342" placeholder="..." />
-                <marker date="1437610579000" expanded="true" signature="2407:2415" placeholder="..." />
-                <marker date="1437610579000" expanded="true" signature="2407:2433" placeholder="..." />
+                <marker date="1437611087000" expanded="true" signature="2325:2342" placeholder="..." />
+                <marker date="1437611087000" expanded="true" signature="2325:2360" placeholder="..." />
+                <marker date="1437611087000" expanded="true" signature="2362:2379" placeholder="..." />
+                <marker date="1437611087000" expanded="true" signature="2444:2452" placeholder="..." />
+                <marker date="1437611087000" expanded="true" signature="2444:2474" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -774,14 +774,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app/public/ng-app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23913044">
-          <caret line="86" column="176" selection-start-line="86" selection-start-column="176" selection-end-line="86" selection-end-column="176" />
+        <state vertical-scroll-proportion="0.51086956">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
-            <marker date="1437610579000" expanded="true" signature="2288:2305" placeholder="..." />
-            <marker date="1437610579000" expanded="true" signature="2288:2323" placeholder="..." />
-            <marker date="1437610579000" expanded="true" signature="2325:2342" placeholder="..." />
-            <marker date="1437610579000" expanded="true" signature="2407:2415" placeholder="..." />
-            <marker date="1437610579000" expanded="true" signature="2407:2433" placeholder="..." />
+            <marker date="1437611087000" expanded="true" signature="2325:2342" placeholder="..." />
+            <marker date="1437611087000" expanded="true" signature="2325:2360" placeholder="..." />
+            <marker date="1437611087000" expanded="true" signature="2362:2379" placeholder="..." />
+            <marker date="1437611087000" expanded="true" signature="2444:2452" placeholder="..." />
+            <marker date="1437611087000" expanded="true" signature="2444:2474" placeholder="..." />
           </folding>
         </state>
       </provider>

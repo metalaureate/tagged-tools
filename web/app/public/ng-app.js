@@ -28,6 +28,8 @@ app.controller('ProfilesCtrl', function ($scope, $http, $log,$state,$stateParams
         ).success(function (data) {
                 $scope.uids=data.data;
 
+                $scope.visualize();
+
             }).error(function () {
 
                 $log.error("Error getting saved query.");

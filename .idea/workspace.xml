@@ -64,11 +64,14 @@
       <file leaf-file-name="ng-app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/app/public/ng-app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16485508">
-              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.23913044">
+              <caret line="86" column="176" selection-start-line="86" selection-start-column="176" selection-end-line="86" selection-end-column="176" />
               <folding>
-                <marker date="1437609280000" expanded="true" signature="2288:2305" placeholder="..." />
-                <marker date="1437609280000" expanded="true" signature="2307:2324" placeholder="..." />
+                <marker date="1437610579000" expanded="true" signature="2288:2305" placeholder="..." />
+                <marker date="1437610579000" expanded="true" signature="2288:2323" placeholder="..." />
+                <marker date="1437610579000" expanded="true" signature="2325:2342" placeholder="..." />
+                <marker date="1437610579000" expanded="true" signature="2407:2415" placeholder="..." />
+                <marker date="1437610579000" expanded="true" signature="2407:2433" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -110,7 +113,7 @@
         <entry file="file://$PROJECT_DIR$/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -735,18 +738,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/public/templates/profiles.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -761,21 +772,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/app/public/templates/profiles.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/app/public/ng-app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16485508">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.23913044">
+          <caret line="86" column="176" selection-start-line="86" selection-start-column="176" selection-end-line="86" selection-end-column="176" />
           <folding>
-            <marker date="1437609280000" expanded="true" signature="2288:2305" placeholder="..." />
-            <marker date="1437609280000" expanded="true" signature="2307:2324" placeholder="..." />
+            <marker date="1437610579000" expanded="true" signature="2288:2305" placeholder="..." />
+            <marker date="1437610579000" expanded="true" signature="2288:2323" placeholder="..." />
+            <marker date="1437610579000" expanded="true" signature="2325:2342" placeholder="..." />
+            <marker date="1437610579000" expanded="true" signature="2407:2415" placeholder="..." />
+            <marker date="1437610579000" expanded="true" signature="2407:2433" placeholder="..." />
           </folding>
         </state>
       </provider>

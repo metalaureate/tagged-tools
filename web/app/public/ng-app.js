@@ -84,13 +84,12 @@ app.directive('taggedSquarify', function() {
             imageUrl: '@taggedSquarify',
             size: '='
         },
-        template: "<div style='overflow: hidden;' ng-style='{width: size, height: size}'><img ng-src='{{ imageUrl }}' />{{size}},{{size}}</div>",
+        template: "<div style='overflow: hidden;position:relative;' ng-style='{width: size, height: size}'><img ng-src='{{ imageUrl }}' /><div style='position:absolute;top:0px;git '>{{size}},{{height}}</div></div>",
         transclude: true,
         replace: true,
         link: function(scope, element, attrs) {
             var img = element.find('img');
             var width, height, ratio;
-
             var scaleImage = function() {
                 scope.imageCss = {
                     width: (ratio <= 1) ? scope.size : 'auto',
@@ -117,8 +116,9 @@ app.directive('taggedSquarify', function() {
                 height = img[0].height;
                 ratio = width / height;
                 scope.$apply(scaleImage);
-            });
+                scope.height=height;
 
+            });
             scope.$watch('size', scaleImage);
         }
     };
